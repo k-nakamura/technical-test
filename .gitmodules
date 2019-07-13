@@ -1,0 +1,3 @@
+[submodule "submodule/model"]
+	path = submodule/model
+	url = git@github.com:k-nakamura/age-gender-estimation.git
