@@ -1,0 +1,33 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: facepredictor
+  namespace: default
+  labels:
+    app: facepredictor
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: facepredictor
+    spec:
+      volumes:
+      - name: sockets
+        emptyDir: {}
+      containers:
+      - name: facepredictor-frontend
+        image: gcr.io/technical-test-246411/facepredictor-frontend
+        imagePullPolicy: Always
+        ports:
+        - name: http-server
+          containerPort: 80
+        volumeMounts:
+        - name: sockets
+          mountPath: /tmp/sock/
+      - name: facepredictor-worker
+        image: gcr.io/technical-test-246411/facepredictor-worker
+        imagePullPolicy: Always
+        volumeMounts:
+        - name: sockets
+          mountPath: /tmp/sock/

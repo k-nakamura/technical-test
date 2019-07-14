@@ -1,9 +1,6 @@
 Flask>=1.0.0
-gunicorn==19.9.0
-mock==2.0.0
-six==1.11.0
 requests[security]==2.20.1
-honcho==1.0.1
+uwsgi
 opencv-python
 imutils
 tensorflow
