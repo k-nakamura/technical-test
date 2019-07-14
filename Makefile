@@ -20,16 +20,12 @@ push: build
 	gcloud docker -- push gcr.io/$(GCLOUD_PROJECT)/facepredictor-frontend
 	gcloud docker -- push gcr.io/$(GCLOUD_PROJECT)/facepredictor-worker
 
-.PHONY: template
-template:
-	sed -i ".tmpl" "s/\[GCLOUD_PROJECT\]/$(GCLOUD_PROJECT)/g" facepredictor-deploy.yaml
-
 .PHONY: create-service
 create-service:
 	kubectl create -f facepredictor-service.yaml
 
 .PHONY: create-deploy
-create-deploy: push template
+create-deploy: push
 	kubectl create -f facepredictor-deploy.yaml
 
 .PHONY: deploy

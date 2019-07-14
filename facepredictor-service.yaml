@@ -1,15 +1,17 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: facepredictor-frontend
   labels:
-    app: facepredictor-frontend
-    tier: frontend
+    app: facepredictor
+  name: facepredictor-service
+  namespace: default
 spec:
-  type: LoadBalancer
+  externalTrafficPolicy: Cluster
   ports:
   - port: 80
-    targetPort: http-server
+    protocol: TCP
+    targetPort: 80
   selector:
-    app: facepredictor-frontend
-    tier: frontend
+    app: facepredictor
+  sessionAffinity: None
+  type: LoadBalancer

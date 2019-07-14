@@ -12,5 +12,5 @@ ADD requirements.txt /app/requirements.txt
 RUN pip install -r /app/requirements.txt
 
 # uwsgi.iniをコピー
-COPY uwsgi.ini /var/www/uwsgi.ini
+ADD uwsgi.ini /var/www/uwsgi.ini
 CMD ["uwsgi","--ini","/var/www/uwsgi.ini"]
