@@ -10,35 +10,32 @@ create-cluster:
 		--num-nodes 2
 	gcloud container clusters get-credentials facepredictor
 
-.PHONY: create-bucket
-create-bucket:
-	gsutil mb gs://$(GCLOUD_PROJECT)
-    gsutil defacl set public-read gs://$(GCLOUD_PROJECT)
-
 .PHONY: build
 build:
-	docker build -t gcr.io/$(GCLOUD_PROJECT)/facepredictor .
+	docker build -t gcr.io/$(GCLOUD_PROJECT)/facepredictor-frontend ./nginx/
+	docker build -t gcr.io/$(GCLOUD_PROJECT)/facepredictor-worker ./worker/
 
 .PHONY: push
 push: build
-	gcloud docker -- push gcr.io/$(GCLOUD_PROJECT)/facepredictor
+	gcloud docker -- push gcr.io/$(GCLOUD_PROJECT)/facepredictor-frontend
+	gcloud docker -- push gcr.io/$(GCLOUD_PROJECT)/facepredictor-worker
 
 .PHONY: template
 template:
-	sed -i ".tmpl" "s/\[GCLOUD_PROJECT\]/$(GCLOUD_PROJECT)/g" facepredictor-frontend.yaml
+	sed -i ".tmpl" "s/\[GCLOUD_PROJECT\]/$(GCLOUD_PROJECT)/g" facepredictor-deploy.yaml
 
 .PHONY: create-service
 create-service:
 	kubectl create -f facepredictor-service.yaml
 
-.PHONY: deploy-frontend
-deploy-frontend: push template
-	kubectl create -f facepredictor-frontend.yaml
+.PHONY: create-deploy
+create-deploy: push template
+	kubectl create -f facepredictor-deploy.yaml
 
 .PHONY: deploy
-deploy: deploy-frontend create-service
+deploy: create-deploy create-service
 
 .PHONY: delete
 delete:
+	-kubectl delete -f facepredictor-deploy.yaml
 	-kubectl delete -f facepredictor-service.yaml
-	-kubectl delete -f facepredictor-frontend.yaml

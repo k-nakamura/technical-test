@@ -1,5 +1,2 @@
-!.gitignore
-img/*
-!img/.gitkeep
-
-submodule/*
+worker/src/img/*
+!worker/src/img/.gitkeep

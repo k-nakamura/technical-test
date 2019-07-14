@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: facepredictor-frontend
   labels:
-    app: facepredictor
+    app: facepredictor-frontend
     tier: frontend
 spec:
   type: LoadBalancer
@@ -11,5 +11,5 @@ spec:
   - port: 80
     targetPort: http-server
   selector:
-    app: facepredictor
+    app: facepredictor-frontend
     tier: frontend
