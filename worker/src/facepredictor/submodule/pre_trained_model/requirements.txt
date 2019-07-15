@@ -1,8 +1,5 @@
-Flask>=1.0.0
-requests[security]==2.20.1
-cmake
-uwsgi
 opencv-python
+dlib
 imutils
 tensorflow
 Keras
