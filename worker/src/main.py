@@ -1,5 +1,5 @@
-from . import facepredictor
-from . import config
+import facepredictor
+import config
 
 app = facepredictor.create_app(config)
 
