@@ -25,6 +25,9 @@ RUN mkdir /var/www
 COPY src /var/www/src
 WORKDIR /var/www/src
 
+# モデルの重みをダウンロードして配置
+ADD https://github.com/yu4u/age-gender-estimation/releases/download/v0.5/weights.28-3.73.hdf5 /var/www/src/facepredictor/weights
+
 # uwsig用のユーザーを作成して権限を付与
 RUN useradd -m uwsgi_user
 RUN chown -R uwsgi_user:uwsgi_user /var/www/src/
