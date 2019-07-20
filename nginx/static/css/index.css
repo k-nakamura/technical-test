@@ -1,0 +1,13 @@
+span.annotation{
+    display: block;
+    font-size: 9px;
+}
+span.message{
+    display: block;
+    font-size: 20px;
+}
+table.result_table,
+table.result_table td,
+table.result_table th {
+    border: solid 1px #000000;
+}

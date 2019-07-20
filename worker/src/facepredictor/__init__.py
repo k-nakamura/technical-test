@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, current_app
 
 
 def create_app(config, debug=False, testing=False, config_overrides=None):
@@ -10,6 +10,7 @@ def create_app(config, debug=False, testing=False, config_overrides=None):
 
     @app.route('/', methods=['GET', 'POST'])
     def index():
-        return render_template('index.html')
+        arrowed_ext = current_app.config['ARROWED_EXT']
+        return render_template('index.html', arrowed_ext=arrowed_ext)
 
     return app
