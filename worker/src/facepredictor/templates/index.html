@@ -2,11 +2,22 @@
   <head>
     <title>Face Predictor</title>
     <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/static/js/index.js"></script>
+    <link href="/static/css/index.css" rel="stylesheet" type="text/css" media="all" />
   </head>
   <body>
-    <form method="post" action="/api/predict" enctype="multipart/form-data">
-      <input type="file" name="image" id="image"/>20MBまで
-      <input type="submit"/>
+    <form id="image_form" method="post" action="" enctype="multipart/form-data" onsubmit="return upload_image();">
+      <div>
+        <input type="file" name="image" id="image"/>
+        <input type="submit"/>
+        <span class="annotation">対応拡張子: {{arrowed_ext}}</span>
+        <span class="annotation">ファイルサイズは20MBまで</span>
+      </div>
     </form>
+    <div id="result_area">
+      <span class="message"></span>
+      <table id="result_table" class="result_table"></table>
+    </div>
   </body>
 </html>

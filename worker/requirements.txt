@@ -4,7 +4,7 @@ cmake
 uwsgi
 opencv-python
 imutils
-tensorflow
+tensorflow-gpu
 Keras
 scipy
 numpy
