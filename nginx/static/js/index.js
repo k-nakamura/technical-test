@@ -58,9 +58,9 @@ function describe_error_message(results) {
 
 function describe_count_message(num) {
   if (num === 0) {
-    $('.message').text('お客様は入店していません。');
+    $('.message').text('人物は写っていません。');
   } else {
-    $('.message').text(num + '名のお客様が入店されました');
+    $('.message').text(num + '名の人物が写っています。');
   }
 }
 
