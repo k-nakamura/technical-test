@@ -14,6 +14,9 @@ tensorflow-gpu==1.14.0 -> tensorflow==1.14.0
 
 ※ GPUを使用したクラスタはGCPのコンソールから[IAMと管理 > 割り当て]からGPUの上限を引き上げるよう申請が必要なので注意  
 
+2. yamlファイルにプロジェクト名を記述  
+/facepredictor-deploy.yaml内の[GCLOUD_PROJECT]をGCPのプロジェクトIDで置き換える
+
 3. デプロイ先のクラスタを設定
 作成したクラスタをgcloudコマンドで扱えるよう設定
 ```
