@@ -2,3 +2,4 @@ __pycache__/
 worker/src/img/*
 !worker/src/img/.gitkeep
 *.pyc
+.DS_Store

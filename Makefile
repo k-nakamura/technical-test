@@ -3,13 +3,6 @@ GCLOUD_PROJECT:=$(shell gcloud config list project --format="value(core.project)
 .PHONY: all
 all: deploy
 
-.PHONY: create-cluster
-create-cluster:
-	gcloud container clusters create facepredictor \
-		--scopes "cloud-platform" \
-		--num-nodes 2
-	gcloud container clusters get-credentials facepredictor
-
 .PHONY: build
 build:
 	docker build -t gcr.io/$(GCLOUD_PROJECT)/facepredictor-frontend ./nginx/
