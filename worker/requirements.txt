@@ -2,7 +2,7 @@ Flask>=1.0.0
 requests[security]==2.20.1
 cmake==3.14.4
 uwsgi==2.0.18
-opencv-python==4.1.0.25
+opencv-python==4.2.0.32
 imutils==0.5.2
 tensorflow-gpu==1.14.0
 Keras==2.2.4
